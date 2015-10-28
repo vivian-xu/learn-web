@@ -1,0 +1,193 @@
+/* Css Document*/
+/* 重置 */
+body,div,p,ul,li,dl,dt,dd,h1,a {
+padding: 0;
+margin: 0;
+}
+img {
+border:none;
+}
+
+h1{
+font-size:100%;
+}
+/* 整体 */
+html {
+background: url(../images/bg.gif) repeat-x;
+}
+
+body {
+background: url(../images/clouds.gif) repeat-x;
+padding-top: 45px;
+font-family:Verdana, Geneva, sans-serif;
+}
+
+#header,#banner,#content,#footer {
+width: 70.274%;
+margin: 0 auto;
+}
+
+
+/* header */
+/* img内联标签，体现出块状元素的高宽特性。 a,img 都为内联元素，内联元素不能包含块状元素。*/
+#header {
+overflow:hidden;
+}
+
+#logo,#logo img { 
+display: block;
+}
+
+#logo {
+float:left;
+width: 220px;
+height:54px;
+background:#991616;
+}
+
+
+#nav {
+width: 779.985px;
+height: 54px;
+background:#393838;
+list-style: none;
+float: left;
+}
+
+#nav li {
+float: left;
+}
+
+#nav li a {
+display: block;
+width:86px;
+height: 54px;
+line-height: 54px;
+text-align: center;
+text-decoration: none;
+
+font-size:12px; 
+color:#ccc; 
+}
+
+#nav li a:hover{
+color: #fff;
+}
+
+#nav li .navActive{
+background: url(../images/navHoverBg.png) no-repeat;
+color:#fff;
+}
+
+/* banner */
+#banner,#banner img {
+display:block;
+}
+
+#banner {
+width: 70.274%;
+height: 292px;
+margin: 10px auto;
+}
+
+/* content */
+#content {
+background: #eaeaea;
+overflow: hidden;
+font-size: 12px;
+line-height: 24px;
+}
+
+#leftArticle, #rightInfo {
+margin: 10px;
+display: inline;
+float: left;
+}
+
+#leftArticle {
+width: 660px;
+}
+
+#rightInfo {
+width: 299.983px;
+}
+
+#articlePicA, #articlePicA img {
+display: block;
+}
+
+#leftArticle h1 {
+margin: 20px 0;
+font-size: 24px;
+font-family: "微软雅黑", "黑体";
+}
+/* 浏览器有默认的h1字体格式，所以光定义上边，h1的大小不能变 所以要重置h1(重置部分)*/
+
+#leftArticle h1 a {
+text-decoration: none;
+color: #900;
+}
+
+#leftArticle h1 a:hover {
+text-decoration: underline;
+}
+
+#leftArticle p {
+color: #333;
+text-indent: 2em;
+font-size: 14px;
+margin-bottom: 30px;
+}
+
+#rightInfo dl {
+margin-bottom: 10px;
+}
+
+#rightInfo dl dt {
+background: url(../images/title.jpg) no-repeat;
+height: 32px;
+line-height: 32px;
+color: #fff;
+font-size: 14px;
+font-weight: bold;
+text-indent: 20px;
+}
+
+#rightInfo dl dd {
+height: 24px;
+line-height: 24px;
+background: url(../images/dot.gif) no-repeat 7px 11px;
+text-indent: 16px;
+}
+
+#rightInfo dl dd a {
+color: #333;
+text-decoration: none;
+}
+
+#rightInfo dl dd a:hover {
+color: #900;
+text-decoration: underline;
+}
+
+/* footer */
+#footer {
+height: 70px;
+margin-top: 10px;
+background: #393838;
+
+color: #ccc;
+text-align: center;
+padding-top: 18px;
+line-height: 18px;
+font-size:12px;
+}
+
+#footer a {
+color: #ccc;
+text-decoration: none;
+}
+
+#footer a:hover {
+text-decoration: underline;
+}
