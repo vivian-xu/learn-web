@@ -1,30 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel='stylesheet' type="text/css" href="http://static.jackon.me/Font-Awesome-4.4.0/css/font-awesome.min.css"></link>
-
-
-<style type="text/css">
-.out { position:fixed; width:300px; height:300px; background: blue; top:50px;left:30px;}
-.float { float:right; width:100px; height:100px; background:red; }
-.abso { position:absolute; width:65px; height:65px; background:yellow;top:10px;left:0; } 
-.rela { position:relative; width:70px; height:70px; background:green; }
+<meta charset="utf-8">
+<title></title>
+<style>
+html,body { margin: 0; padding: 0;}
+body { font-size: 14px; background-color: #DDF3F7; color: #333; }
+.out { width: 300px; height: 500px; background: #99C; margin: 30px; overflow: hidden; }
+.blockOne { width: 100px; height: 100px; background: #ff7575; margin: 20px; } 
+.blockOneC { width: 50px; height: 50px; background: #FFFF37; margin: 20px; } 
+.blockTwo { width: 100px; height: 100px; background: #A6FFA6; margin: 20px; float: left;}
+.outFloat { width: 100px; height: 100px; background: #BEBEBE;  float: left; } 
+.out p { width: 500px; }
 </style>
-<!--[if lt IE 9]> 
-<![endif]-->
+</style>
 </head>
 
-<body>body
+<body>
 <div class="out">
-    <p>out</p>
-    <p>out</p>
-    <p>out</p>
-    <div class="abso">absolute</div>
-    <div class="rela">relative</div>
-    <p>out</p>
+    <div class="blockOne"><div class="blockOneC">1</div></div>
+    <div class="blockTwo"></div>
 </div>
+<br/>
+<br/>
+<br/>
+<br/>
 </body>
+</html>
