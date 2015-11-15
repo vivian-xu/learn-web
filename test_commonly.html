@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title></title>
+<title>test</title>
 <style>
 html,body { margin: 0; padding: 0;}
 body { font-size: 14px; background-color: #DDF3F7; color: #333; }
@@ -13,15 +13,99 @@ body { font-size: 14px; background-color: #DDF3F7; color: #333; }
 .outFloat { width: 100px; height: 100px; background: #BEBEBE;  float: left; } 
 .out p { width: 500px; }
 </style>
-</style>
+   
+<script type="text/javascript"> 
+  
+window.onload = function(){                 
+     // 鼠标移动改变背景,可以通过给每行绑定鼠标移上事件和鼠标移除事件来改变所在行背景色。
+    var everTr = document.getElementsByTagName("tr");
+        console.log(everTr.length);
+       for(var i=0; i<everTr.length; i++)
+    {
+        everTr[i].onmouseover = function(){
+            this.style.backgroundColor = "#f2f2f2";
+        }
+        everTr[i].onmouseout = function(){
+            this.style.backgroundColor = "#fff";  
+        }
+    }
+      
+    var everA = document.getElementsByTagName("a");
+    var Anum = everA.length;
+    console.log(Anum);
+    for(var m=0; m<Anum; m++)
+    {
+        everA[m].onclick =function(){ return removeTr(this)};
+    }
+    
+}
+     
+    // 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点
+function addTr(){
+
+    var everTr = document.getElementsByTagName("tr");
+    var newTr = document.createElement("tr");
+    var newA = document.createElement("a");
+
+    for(var n=0; n<3; n++){
+    var newTd = document.createElement("td");
+    var newText = document.createTextNode(" ");
+    newTd.appendChild(newText);
+    newTr.appendChild(newTd);
+    console.log(n);    
+    }
+
+    newA.href = "javascript:;";
+    newA.innerHTML = "删除";
+    newTr.lastChild.appendChild(newA);
+    console.log(everTr[0].parentNode.nodeName);
+    document.getElementById('table').lastChild.appendChild(newTr);
+//    everTr[0].parentNode.appendChild(newTr);
+    window.onload();
+    }     
+
+    // 创建删除函数
+function removeTr(obj){
+    console.log(obj.nodeName);
+    var currTr = obj.parentNode.parentNode;
+    var tbody = document.getElementById('table').lastChild;  
+    tbody.removeChild(currTr);
+    }
+
+
+
+</script>
 </head>
 
 <body>
-<div class="out">
+<div class="out"> 
     <div class="blockOne"><div class="blockOneC">1</div></div>
-    <div class="blockTwo"></div>
+    <div class="blockTwo"><div class="blockOneC">2</div></div>
 </div>
 <br/>
+
+<table border="1" width="50%" id="table">
+<tr>
+    <th>学号</th>
+    <th>姓名</th>
+    <th>操作</th>
+</tr>  
+
+<tr>
+    <td>xh001</td>
+    <td>王小明</td>
+    <td><a href="javascript:;" >删除</a></td>   <!--在删除按钮上添加点击事件  -->
+</tr>
+
+<tr>
+    <td>xh002</td>
+    <td>刘小芳</td>
+    <td><a href="javascript:;" >删除</a></td>   <!--在删除按钮上添加点击事件  -->
+</tr>  
+</table>
+<input type="button" value="添加一行"  onclick="addTr()"/>   <!--在添加按钮上添加点击事件  -->
+
+
 <br/>
 <br/>
 <br/>
