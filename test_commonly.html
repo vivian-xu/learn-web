@@ -12,6 +12,13 @@ ul {list-style:none;}
 li {height:1.5rem; line-height:1.5rem; *height:21px; *line-height:21px;}
 a {text-decoration:none; font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif; color:black; text-align: center;}
 /* tabName*/
+#tabName li,#tabName a{
+height: 2.6rem;
+*height: 36.4px;
+width: 5rem;
+*width:70px;
+
+}
 
 #tabName li {
 display: inline-block;
@@ -19,15 +26,15 @@ background: url("./images/back2.PNG")  no-repeat;
 float: left;
 border: 1px solid;
 border-bottom: none;
-width: 5rem;
-height: 2.6rem;
 margin-right:0.8rem;
-*width:70px;
-*height:36.4px;
 *zoom:1;
-
 cursor:pointer;
+}
 
+#tabName a {
+display: block;
+line-height:2.6rem;
+*line-height:36.4px;
 }
 
 .clearfix{
@@ -38,15 +45,6 @@ cursor:pointer;
 content:" ";
 display:table;
 clear:both;
-}
-
-#tabName a {
-display: block;
-width:100%;
-height:2.6rem;
-line-height:2.6rem;
-*height:36.4px;
-*line-height:36.4px;
 }
 
 .selected{
@@ -62,66 +60,69 @@ margin-bottom: -2px;
 border:1px solid ;
 border-top: 2px solid red;
 border-collapse:collapse;
-padding: 15px;
+padding: 1.07rem;
+*padding: 15px;
 margin: 0 auto;
 }
 
 #content li:not(:first-child){
 padding-top:0.5rem;
+*padding-top:7px;
 }
-
-
-     
      
 </style>
+
 <script type="text/javascript"> 
 
 function selectedTab(obj){
-var NameLi = document.getElementById("tabName").childNodes;
-for(var i=0; i<NameLi.length; i++)
-{
-    if(NameLi[i].nodeName=="LI")
-    {
-        if(NameLi[i].getAttribute("class")=="selected"){
-            NameLi[i].setAttribute("class","");
-        }
-    }
-}
-var Stab = obj.parentNode;
-Stab.setAttribute("class","selected");
-console.log(Stab.id);
-var str = Stab.id;
-Nmnum = str.indexOf("Name");
+// 设置选中的标签(li)的class=selected。
 
+var NameLi = document.getElementById("tabName").childNodes;
+var Stab = obj.parentNode;
+for(var i=0; i<NameLi.length; i++)  //将所有标签的class都设置为无。
+{
+    if(NameLi[i].nodeName=="LI" && NameLi[i].getAttribute("class")=="selected" )
+    { NameLi[i].setAttribute("class","");}
+}
+
+Stab.setAttribute("class","selected"); // 给选中的标签加class
+
+// 处理所选中的标签的id。
+var str = Stab.id;
+Nmnum = str.indexOf("Name"); // 匹配标签id的Name 获得Name在字符串(标签id,Stab)中的开始位置。匹配不成功fanhui-1。
 if(Nmnum==-1){
     alert("The str is not a ID in ID=tabName!"+"<br/>"+ "str is selected id:"+str);
 }
 else{
     var retstr=""; 
     for(var t=0; t<Nmnum; t++){
-    retstr = retstr + str[t];
+    retstr = retstr + str[t];  // 取得标签id中Name前的字符串，存在retstr中。
     }
-    console.log(retstr);
+}
+matchContent(retstr); // 根据选择标签的id来选择对应的cotent。
+return false;
 }
 
+
+function matchContent(tabid){
 var contentId ="";
-for(var m=0; m<retstr.length; m++){
-    if(m==0){ contentId= contentId + retstr[m].toUpperCase();}
-    else{ contentId = contentId + retstr[m];}
-}
-console.log(contentId);
-var conSelected = document.getElementById("content"+contentId);
 var content = document.getElementById("content");
 var contentSon = content.childNodes;
+for(var m=0; m<tabid.length; m++)
+{
+    if(m==0) { 
+         contentId= contentId + tabid[m].toUpperCase();} // 'undefined' 为空或不是对象。
+    else { contentId = contentId + tabid[m];}
+}
+
+var conSelected = document.getElementById("content"+contentId);
+
 for(var d=0; d<contentSon.length; d++){
-    console.log(contentSon[d].nodeName);
     if(contentSon[d].nodeName=="DIV"){
         contentSon[d].style.display = "none";
     }
-}
-
+    }
 conSelected.style.display="block";
-return false;
 }
 
 </script>
@@ -130,7 +131,7 @@ return false;
 <body>
 <!-- HTML页面布局 -->
 <ul id="tabName" class="clearfix">
-   <li id="homeName"><a onclick="selectedTab(this)"  href="javascript:void(0)">
+   <li id="homeName" class="selected"><a onclick="selectedTab(this)"  href="javascript:void(0)">
     房产</a>
    </li>
  
@@ -145,7 +146,7 @@ return false;
 </ul> 
 
 <div id="content">
-<div id="contentHome" class="contentTxt">
+<div id="contentHome" class="contentTxt" style="display:block">
    <ul>
         <li><a href="#">275万购昌平邻铁三居 总价20万买一居</a></li>
         <li><a href="#">200万内购五环三居 140万安家东三环</a></li>
@@ -153,7 +154,7 @@ return false;
         <li><a href="#">京楼盘直降5000 中信府 公园楼王现房</a></li>
    </ul>
 </div>
-<div id="contentHouse" class="contentTxt">
+<div id="contentHouse" class="contentTxt" style="display:none">
     <ul>
         <li><a href="#">40平出租屋大改造 美少女的混搭小窝 </a></li>             
         <li><a href="#">经典清新简欧爱家 90平老房焕发新生</a></li>
@@ -161,7 +162,7 @@ return false;
         <li><a href="#">瓷砖就像选好老婆 卫生间烟道的设计</a></li>
     </ul>
 </div>
-<div id="contentSecond" class="contentTxt">
+<div id="contentSecond" class="contentTxt" style="display:none">
     <ul>
         <li><a href="#">通州豪华3居260万 二环稀缺2居250w甩</a></li>
         <li><a href="#">西3环通透2居290万 130万2居限量抢购</a></li>
