@@ -3,111 +3,173 @@
 <head>
 <meta charset="utf-8">
 <title>test</title>
-<style>
-html,body { margin: 0; padding: 0;}
-body { font-size: 14px; background-color: #DDF3F7; color: #333; }
-.out { width: 300px; height: 500px; background: #99C; margin: 30px; overflow: hidden; }
-.blockOne { width: 100px; height: 100px; background: #ff7575; margin: 20px; } 
-.blockOneC { width: 50px; height: 50px; background: #FFFF37; margin: 20px; } 
-.blockTwo { width: 100px; height: 100px; background: #A6FFA6; margin: 20px; float: left;}
-.outFloat { width: 100px; height: 100px; background: #BEBEBE;  float: left; } 
-.out p { width: 500px; }
-</style>
-   
-<script type="text/javascript"> 
-  
-window.onload = function(){                 
-     // 鼠标移动改变背景,可以通过给每行绑定鼠标移上事件和鼠标移除事件来改变所在行背景色。
-    var everTr = document.getElementsByTagName("tr");
-        console.log(everTr.length);
-       for(var i=0; i<everTr.length; i++)
-    {
-        everTr[i].onmouseover = function(){
-            this.style.backgroundColor = "#f2f2f2";
-        }
-        everTr[i].onmouseout = function(){
-            this.style.backgroundColor = "#fff";  
-        }
-    }
-      
-    var everA = document.getElementsByTagName("a");
-    var Anum = everA.length;
-    console.log(Anum);
-    for(var m=0; m<Anum; m++)
-    {
-        everA[m].onclick =function(){ return removeTr(this)};
-    }
-    
+<style type="text/css">
+ /* CSS样式制作 */  
+ /*全局*/
+html,body,ul{ margin:0px auto; padding:0px; font-size:14px;}
+body{ width:360px; margin-top:40px;}
+ul {list-style:none;}
+li {height:1.5rem; line-height:1.5rem; *height:21px; *line-height:21px;}
+a {text-decoration:none; font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif; color:black; text-align: center;}
+/* tabName*/
+
+#tabName li {
+display: inline-block;
+background: url("./images/back2.PNG")  no-repeat;
+float: left;
+border: 1px solid;
+border-bottom: none;
+width: 5rem;
+height: 2.6rem;
+margin-right:0.8rem;
+*width:70px;
+*height:36.4px;
+*zoom:1;
+
+cursor:pointer;
+
 }
+
+.clearfix{
+*zoom:1;
+}
+
+.clearfix:after{
+content:" ";
+display:table;
+clear:both;
+}
+
+#tabName a {
+display: block;
+width:100%;
+height:2.6rem;
+line-height:2.6rem;
+*height:36.4px;
+*line-height:36.4px;
+}
+
+.selected{
+display:block;
+z-index: 2;
+padding-top: 2px;
+margin-bottom: -2px;
+}
+
+/* content*/
+
+.contentTxt{
+border:1px solid ;
+border-top: 2px solid red;
+border-collapse:collapse;
+padding: 15px;
+margin: 0 auto;
+}
+
+#content li:not(:first-child){
+padding-top:0.5rem;
+}
+
+
      
-    // 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点
-function addTr(){
+     
+</style>
+<script type="text/javascript"> 
 
-    var everTr = document.getElementsByTagName("tr");
-    var newTr = document.createElement("tr");
-    var newA = document.createElement("a");
-
-    for(var n=0; n<3; n++){
-    var newTd = document.createElement("td");
-    var newText = document.createTextNode(" ");
-    newTd.appendChild(newText);
-    newTr.appendChild(newTd);
-    console.log(n);    
+function selectedTab(obj){
+var NameLi = document.getElementById("tabName").childNodes;
+for(var i=0; i<NameLi.length; i++)
+{
+    if(NameLi[i].nodeName=="LI")
+    {
+        if(NameLi[i].getAttribute("class")=="selected"){
+            NameLi[i].setAttribute("class","");
+        }
     }
+}
+var Stab = obj.parentNode;
+Stab.setAttribute("class","selected");
+console.log(Stab.id);
+var str = Stab.id;
+Nmnum = str.indexOf("Name");
 
-    newA.href = "javascript:;";
-    newA.innerHTML = "删除";
-    newTr.lastChild.appendChild(newA);
-    console.log(everTr[0].parentNode.nodeName);
-    document.getElementById('table').lastChild.appendChild(newTr);
-//    everTr[0].parentNode.appendChild(newTr);
-    window.onload();
-    }     
-
-    // 创建删除函数
-function removeTr(obj){
-    console.log(obj.nodeName);
-    var currTr = obj.parentNode.parentNode;
-    var tbody = document.getElementById('table').lastChild;  
-    tbody.removeChild(currTr);
+if(Nmnum==-1){
+    alert("The str is not a ID in ID=tabName!"+"<br/>"+ "str is selected id:"+str);
+}
+else{
+    var retstr=""; 
+    for(var t=0; t<Nmnum; t++){
+    retstr = retstr + str[t];
     }
+    console.log(retstr);
+}
 
+var contentId ="";
+for(var m=0; m<retstr.length; m++){
+    if(m==0){ contentId= contentId + retstr[m].toUpperCase();}
+    else{ contentId = contentId + retstr[m];}
+}
+console.log(contentId);
+var conSelected = document.getElementById("content"+contentId);
+var content = document.getElementById("content");
+var contentSon = content.childNodes;
+for(var d=0; d<contentSon.length; d++){
+    console.log(contentSon[d].nodeName);
+    if(contentSon[d].nodeName=="DIV"){
+        contentSon[d].style.display = "none";
+    }
+}
 
+conSelected.style.display="block";
+return false;
+}
 
 </script>
 </head>
 
 <body>
-<div class="out"> 
-    <div class="blockOne"><div class="blockOneC">1</div></div>
-    <div class="blockTwo"><div class="blockOneC">2</div></div>
+<!-- HTML页面布局 -->
+<ul id="tabName" class="clearfix">
+   <li id="homeName"><a onclick="selectedTab(this)"  href="javascript:void(0)">
+    房产</a>
+   </li>
+ 
+   <li id="houseName"><a onclick="selectedTab(this) "  href="javascript:void(0)">
+    家居</a>
+   </li>
+
+   <li id="secondName"><a onclick="selectedTab(this)" href="javascript:void(0)">
+    二手房</a>
+   </li>
+ 
+</ul> 
+
+<div id="content">
+<div id="contentHome" class="contentTxt">
+   <ul>
+        <li><a href="#">275万购昌平邻铁三居 总价20万买一居</a></li>
+        <li><a href="#">200万内购五环三居 140万安家东三环</a></li>
+        <li><a href="#">北京首现零首付楼盘 53万购东5环50平</a></li>
+        <li><a href="#">京楼盘直降5000 中信府 公园楼王现房</a></li>
+   </ul>
 </div>
-<br/>
+<div id="contentHouse" class="contentTxt">
+    <ul>
+        <li><a href="#">40平出租屋大改造 美少女的混搭小窝 </a></li>             
+        <li><a href="#">经典清新简欧爱家 90平老房焕发新生</a></li>
+        <li><a href="#">新中式的酷色温情 66平撞色活泼家居</a></li>
+        <li><a href="#">瓷砖就像选好老婆 卫生间烟道的设计</a></li>
+    </ul>
+</div>
+<div id="contentSecond" class="contentTxt">
+    <ul>
+        <li><a href="#">通州豪华3居260万 二环稀缺2居250w甩</a></li>
+        <li><a href="#">西3环通透2居290万 130万2居限量抢购</a></li>
+        <li><a href="#">黄城根小学学区仅260万 121平70万抛!</a></li>
+        <li><a href="#">独家别墅280万 苏州桥2居优惠价248万</a></li>
 
-<table border="1" width="50%" id="table">
-<tr>
-    <th>学号</th>
-    <th>姓名</th>
-    <th>操作</th>
-</tr>  
-
-<tr>
-    <td>xh001</td>
-    <td>王小明</td>
-    <td><a href="javascript:;" >删除</a></td>   <!--在删除按钮上添加点击事件  -->
-</tr>
-
-<tr>
-    <td>xh002</td>
-    <td>刘小芳</td>
-    <td><a href="javascript:;" >删除</a></td>   <!--在删除按钮上添加点击事件  -->
-</tr>  
-</table>
-<input type="button" value="添加一行"  onclick="addTr()"/>   <!--在添加按钮上添加点击事件  -->
-
-
-<br/>
-<br/>
-<br/>
+    </ul>
+</div>
+<div>
 </body>
 </html>
