@@ -1,176 +1,374 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>test</title>
-<style type="text/css">
- /* CSS样式制作 */  
- /*全局*/
-html,body,ul{ margin:0px auto; padding:0px; font-size:14px;}
-body{ width:360px; margin-top:40px;}
-ul {list-style:none;}
-li {height:1.5rem; line-height:1.5rem; *height:21px; *line-height:21px;}
-a {text-decoration:none; font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif; color:black; text-align: center;}
-/* tabName*/
-#tabName li,#tabName a{
-height: 2.6rem;
-*height: 36.4px;
-width: 5rem;
-*width:70px;
+<meta charset="utf-8"/>
+<title>网页定位导航效果扩展案例</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-}
+        body {
+            font-size: 12px;
+            line-height: 1.7;
+            background-color: #fff;
+        }
 
-#tabName li {
-display: inline-block;
-background: url("./images/back2.PNG")  no-repeat;
-float: left;
-border: 1px solid;
-border-bottom: none;
-margin-right:0.8rem;
-*zoom:1;
-cursor:pointer;
-}
+        li {
+            list-style: none;
+        }
 
-#tabName a {
-display: block;
-line-height:2.6rem;
-*line-height:36.4px;
-}
+        #content {
+            width:1000px;
+            margin: 0 auto;
+            padding-top: 50px;
+            padding-bottom: 30px;
+        }
 
-.clearfix{
-*zoom:1;
-}
+        a {
+            text-decoration: none;
+        
+        }
+        /*  hack button */
 
-.clearfix:after{
-content:" ";
-display:table;
-clear:both;
-}
+        /* Firefox在私有属性里面额外设置了边框和留白，去掉即可.*/
+        .search-form button::-moz-focus-inner {
+            border: 0; 
+            padding: 0; 
+        }        
+  
+       /* nav */
+        #nav {
+        position: relative;
+        width:1000px;
+        margin: 0 auto;
+        height: 32px;
+        line-height: 32px;
+        }
 
-.selected{
-display:block;
-z-index: 2;
-padding-top: 2px;
-margin-bottom: -2px;
-}
+        #nav ul {
+        position: absolute;
+        right: 0;
+        top: 0;
+        }
 
-/* content*/
+        #nav ul li {
+        float: left;
+        padding-right: 10px;
+        
+        }
+        
+        #log {
+        display: inline-block;
+        position: relative;
+        }
+        
+        #log em {
+        padding-right:10px;
+        
+        }
 
-.contentTxt{
-border:1px solid ;
-border-top: 2px solid red;
-border-collapse:collapse;
-padding: 1.07rem;
-*padding: 15px;
-margin: 0 auto;
-}
+        #log a {
+        padding: 10px;
+        }
+    /* search */
+        
+        #search {
+        width: 1000px;
+        margin: 50px auto;
+        }    
+        
+        .search-form {
+       position: relative;/* ie overflow:hidden 不兼容 */ 
+        overflow: hidden;
+        width: 500px;
+        margin: 0 auto;
+        padding: 5px;
+        background: rgba(255, 0, 0, 0.2);
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        }
+    
+        /* input */
+        #search .search-form input {
+        float: left;         /*   必须浮动，否则chorme显示会有几个像素的流失 */
+        width: 400px;
+        padding: 5px;
+        background: #eee;
+        border: none;
+        border-radius: 3px 0 0 3px;
+        -webkit-border-radius: 3px 0 0 3px;
+        -moz-border-radius: 3px 0 0 3px;
+        }
+        
+        #search .search-form input:focus {
+        outline: 0;
+        background: #fff;
+        box-shadow: 0 0 2px rgba(0, 0, 0, .8) inset;
+        } 
+        
+        /* button */
+        /* 小三角（箭头） */
+        #search .search-form button:before {   
+        position: absolute;
+        content:'';
+        border-width: 5px 5px 5px 0px;
+        border-style: solid solid solid none;
+        border-color: transparent #d83c3c transparent;  /*  transparent 上下边透明  */
+        margin-left: -37px;  /* 大概是 button width的一半还少一个字体的宽度（还有三角的边），把它放到指定位置 */
+        margin-top: 7px;
+        
+        * zoom: 1;
+        }
+        
+        #search .search-form button:hover:before {   
+        border-right-color: #e54040;    /* 只改变一边的border的颜色 */
+        }
+        
+        #search .search-form button:active:before,
+        #search .search-form button:focus:before {
+        border-right-color: #c42f2f;
+        outline: 0;
+        }
 
-#content li:not(:first-child){
-padding-top:0.5rem;
-*padding-top:7px;
-}
-     
+ 
+        #search .search-form button{
+        float: right;
+        position: relative;
+        background: #d83c3c;
+        border: none;
+        color: #fff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+        font: 13px/26px 'microsoft yahei',Arial,sans-serif;
+        cursor: pointer;
+
+        width: 90px;
+        height: 26px;  /* 有height 不要padding 会影响ff的 文字垂直位置 */
+        padding: 0;
+
+        border-radius: 0 3px 3px 0;
+        -webkit-border-radius: 0 3px 3px 0;
+        -moz-border-radius:  0 3px 3px 0;
+        }
+        
+        #search .search-form button:hover {
+        background: #e54040;
+        }
+        
+        #search .search-form button:active,
+        #search .search-form button:focus {
+        background: #c42f2f;
+        outline: 0;
+        }
+
+
+   /*请补充此处代码，让右侧广告正确显示*/
+
+        #content div{
+            position: relative;
+            height:540px;
+            margin-bottom:30px;
+        }
+
+        #content .item img {
+            position: absolute;
+            margin-top: 20px;
+            bottom:0px;
+            left: 250px;
+            margin-right:250px;
+            
+            *zoom: 1;
+        }
+
+        #content #item1 {
+            background: #cb60b3;
+            background: -moz-linear-gradient(top, #cb60b3 0%, #ad1283 35%, #de47ac 100%);
+            background: -webkit-linear-gradient(top, #cb60b3 0%,#ad1283 35%,#de47ac 100%);
+            background: linear-gradient(to bottom, #cb60b3 0%,#ad1283 35%,#de47ac 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cb60b3', endColorstr='#de47ac',GradientType=0 );
+            Color format:
+        }
+
+        #content #item2 {
+            background: url("http://img.mukewang.com/536c9ecd0001606d10000540.jpg") no-repeat center top;
+        }
+
+        #content #item3 {
+            background: url("http://img.mukewang.com/536c9f0a0001ccc310000540.jpg") no-repeat center top;
+        }
+
+        #content #item3 img {
+        margin-bottom: 30px;
+        }
+        
+        #content #item4 {
+            background: url("http://img.mukewang.com/536c9f6700012e9010000540.jpg") no-repeat center top;
+        }
+
+        #content #item5 {
+            background: url("http://img.mukewang.com/536c9f800001b28510000540.jpg") no-repeat center top;
+        }
+
+      
+  /*请补充此处代码，让导航菜单在左侧绝对定位显示*/
+
+        #menu {
+            width: 200px;
+            position: fixed;
+            top: 200px;
+            left: 50%;
+            margin-left: 500px;
+            z-index:1;
+        }
+
+        #menu h1 {
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+            background: #ee1111;
+            line-height: 30px;
+        }
+
+        #menu ul li a {
+            display: block;
+            margin: 5px 0;
+            font-size: 12px;
+            color: #ccc;
+            background:#D1484F;
+            width: 160px;
+            padding: 10px 20px;
+            text-decoration: none;
+            text-align: left;
+            border-bottom: 1px dashed #999;
+        }
+
+        #menu ul li a strong {
+            color: #f1f1f1;
+        }
+
+        #menu ul li a:hover,
+        #menu ul li a.current {
+            color: #fff;
+            background: #666;
+        }
+
+        /*ie6 hack*/
+        * html, * html body {  /* ie6跳变 */
+            background-image: url(about:blank);
+            background-attachment: fixed;
+        }
+
+        * html #menu {
+            /*position: fixed;*/
+            position: absolute;
+            top: expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+100+'px');
+        }
+
 </style>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.js"></script>
+<script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                var top = $(document).scrollTop();
+                var menu = $("#menu");
+                var items = $("#content").find(".item");
+                var currentH = "";
 
-<script type="text/javascript"> 
+// 请补充此处代码，让导航菜单实现在滚动条滚动的时候自动设置焦点
+                
+                for(var i=0; i<items.length; i++){
+                var item = items[i];
+                var item_top = item.offsetTop;
+                if(item_top-200 < top ){
+                currentH = "#"+item.id;
+                }
+                else{
+                break;
+                }
+                }
+                
+                var menua = menu.find("a");
+                /* 以下也可以这样写 */
+                /*  var currentLink = menu.find(".current"); 
+                 
+                    if(currentH && currentLink.attr("href") != currentH){
+                        currentLink.removeClass("current");
+                        menu.find("[href=" + currentH + "]").addClass("current");
+                    
+                    
+                    }
+                 
+                 
+                 
+                 */
+                menua.each(function (index) {
+                var $this=$(this);
+                if($this.class == "current" && $this.attr("href") == currentH){
+                    pass;
+                }
+                else if($this.attr("href") == currentH){
+                    $this.addClass("current");
+                    console.log(this.nodeName);
 
-function selectedTab(obj){
-// 设置选中的标签(li)的class=selected。
+                }
+                else{
+                    $this.removeClass("current");
+                }
 
-var NameLi = document.getElementById("tabName").childNodes;
-var Stab = obj.parentNode;
-for(var i=0; i<NameLi.length; i++)  //将所有标签的class都设置为无。
-{
-    if(NameLi[i].nodeName=="LI" && NameLi[i].getAttribute("class")=="selected" )
-    { NameLi[i].setAttribute("class","");}
-}
+                });
+            
+ 
+            });
 
-Stab.setAttribute("class","selected"); // 给选中的标签加class
-
-// 处理所选中的标签的id。
-var str = Stab.id;
-Nmnum = str.indexOf("Name"); // 匹配标签id的Name 获得Name在字符串(标签id,Stab)中的开始位置。匹配不成功fanhui-1。
-if(Nmnum==-1){
-    alert("The str is not a ID in ID=tabName!"+"<br/>"+ "str is selected id:"+str);
-}
-else{
-    var retstr=""; 
-    for(var t=0; t<Nmnum; t++){
-    retstr = retstr + str[t];  // 取得标签id中Name前的字符串，存在retstr中。
-    }
-}
-matchContent(retstr); // 根据选择标签的id来选择对应的cotent。
-return false;
-}
-
-
-function matchContent(tabid){
-var contentId ="";
-var content = document.getElementById("content");
-var contentSon = content.childNodes;
-for(var m=0; m<tabid.length; m++)
-{
-    if(m==0) { 
-         contentId= contentId + tabid[m].toUpperCase();} // 'undefined' 为空或不是对象。
-    else { contentId = contentId + tabid[m];}
-}
-
-var conSelected = document.getElementById("content"+contentId);
-
-for(var d=0; d<contentSon.length; d++){
-    if(contentSon[d].nodeName=="DIV"){
-        contentSon[d].style.display = "none";
-    }
-    }
-conSelected.style.display="block";
-}
-
+        });
 </script>
 </head>
-
 <body>
-<!-- HTML页面布局 -->
-<ul id="tabName" class="clearfix">
-   <li id="homeName" class="selected"><a onclick="selectedTab(this)"  href="javascript:void(0)">
-    房产</a>
-   </li>
- 
-   <li id="houseName"><a onclick="selectedTab(this) "  href="javascript:void(0)">
-    家居</a>
-   </li>
-
-   <li id="secondName"><a onclick="selectedTab(this)" href="javascript:void(0)">
-    二手房</a>
-   </li>
- 
-</ul> 
-
-<div id="content">
-<div id="contentHome" class="contentTxt" style="display:block">
-   <ul>
-        <li><a href="#">275万购昌平邻铁三居 总价20万买一居</a></li>
-        <li><a href="#">200万内购五环三居 140万安家东三环</a></li>
-        <li><a href="#">北京首现零首付楼盘 53万购东5环50平</a></li>
-        <li><a href="#">京楼盘直降5000 中信府 公园楼王现房</a></li>
-   </ul>
-</div>
-<div id="contentHouse" class="contentTxt" style="display:none">
+<div id="nav">
+    <p id="log"><em>wellcome!</em><a href="#">登录</a><a href="#">免费注册</a></p>
     <ul>
-        <li><a href="#">40平出租屋大改造 美少女的混搭小窝 </a></li>             
-        <li><a href="#">经典清新简欧爱家 90平老房焕发新生</a></li>
-        <li><a href="#">新中式的酷色温情 66平撞色活泼家居</a></li>
-        <li><a href="#">瓷砖就像选好老婆 卫生间烟道的设计</a></li>
+        <li><a href="#">网站导航</a></li>
+        <li><a href="#">我的首页</a></li>
+    
     </ul>
 </div>
-<div id="contentSecond" class="contentTxt" style="display:none">
-    <ul>
-        <li><a href="#">通州豪华3居260万 二环稀缺2居250w甩</a></li>
-        <li><a href="#">西3环通透2居290万 130万2居限量抢购</a></li>
-        <li><a href="#">黄城根小学学区仅260万 121平70万抛!</a></li>
-        <li><a href="#">独家别墅280万 苏州桥2居优惠价248万</a></li>
 
-    </ul>
+<div id="search">
+    <form class="search-form">
+        <input type="text" placeholder="Search here.."/>
+    <button type="submit">搜索</button>
+    </form>
 </div>
+<div id="menu">
+<h1>正在首发</h1>
+<ul>
+<li><a href="#item1" class="current"><strong>2014.04.09</strong><br>施华蔻0元赢Smart</a></li>
+<li><a href="#item2"><strong>2014.04.05</strong><br>alienware机皇限量抢</a></li>
+<li><a href="#item3"><strong>2014.04.04</strong><br>联想Miix2 3G平板电脑</a></li>
+<li><a href="#item4"><strong>2014.04.03</strong><br>御爵厨房垃圾处理器</a></li>
+<li><a href="#item5"><strong>2014.04.01</strong><br>中兴天机GRAND S II</a></li>
+</ul>
+</div>
+
 <div>
+<div id="content">
+<div id="item1" class="item">
+<img src="http://img.mukewang.com/536ca02800014e7105000400.jpg">
+</div>
+<div id="item2" class="item">
+<img src="http://img.mukewang.com/536ca04b0001dbeb04520519.jpg">
+</div>
+<div id="item3" class="item">
+<img src="http://img.mukewang.com/536ca06200016a4d03950387.jpg">
+</div>
+<div id="item4" class="item">
+<img src="http://img.mukewang.com/536ca0ab0001c89205000400.jpg">
+</div>
+<div id="item5" class="item">
+<img src="http://img.mukewang.com/536ca0830001b17f05000400.jpg">
+</div>
+</div>
 </body>
 </html>
