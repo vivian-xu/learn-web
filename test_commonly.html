@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8"/>
 <title>网页定位导航效果扩展案例</title>
-<style>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
+  <style>
         * {
             margin: 0;
             padding: 0;
@@ -80,7 +83,7 @@
         }    
         
         .search-form {
-       position: relative;/* ie overflow:hidden 不兼容 */ 
+        position: relative;/* ie overflow:hidden 不兼容 */ 
         overflow: hidden;
         width: 500px;
         margin: 0 auto;
@@ -267,7 +270,6 @@
         }
 
 </style>
-<script src="http://libs.baidu.com/jquery/1.10.2/jquery.js"></script>
 <script>
         $(document).ready(function () {
             $(window).scroll(function () {
@@ -296,12 +298,7 @@
                     if(currentH && currentLink.attr("href") != currentH){
                         currentLink.removeClass("current");
                         menu.find("[href=" + currentH + "]").addClass("current");
-                    
-                    
                     }
-                 
-                 
-                 
                  */
                 menua.each(function (index) {
                 var $this=$(this);
@@ -318,8 +315,37 @@
                 }
 
                 });
-            
- 
+
+                /* input 自动提醒 autocomplete 列表  */
+                
+                var arrItems = $("#content").find(".item");
+                var arrItemsId = new Array();
+                arrItems.each(function(index){
+                
+                console.log($(this).attr("id"));
+                arrItemsId.push($(this).attr("id"));
+                
+                });
+                
+                $("#txtSearch").autocomplete({
+                    
+                    minChars: 0,
+                    source: arrItemsId,
+                    formatItem: function (data, i, total) {
+                        return data[0];
+                    },     
+                    formatMatch: function (data, i, total) {
+                        return data[0];
+                    },
+                    formatResult: function (data) {
+                        return data[0];
+                    }
+                        
+                        
+                        
+                        
+                    });
+
             });
 
         });
@@ -337,7 +363,7 @@
 
 <div id="search">
     <form class="search-form">
-        <input type="text" placeholder="Search here.."/>
+        <input type="text" id="txtSearch" placeholder="Search here.."/>
     <button type="submit">搜索</button>
     </form>
 </div>
