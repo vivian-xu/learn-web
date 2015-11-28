@@ -1,0 +1,40 @@
+html,body,input,h1{ margin:0; padding:0; font:14px;}
+body{ position: relative;}
+
+#Log{
+    position: fixed;
+    width: 30%;
+    border: 1px solid #000;
+    background: #eee;
+    top: 35%;
+    left: 35%;
+}
+
+#Log h1 {
+text-align: center;
+padding: 10px 0;
+background: #efe;
+font-size: 30px;
+font-weight: 700;
+text-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+
+#Log input, #Log button {
+    display: block;
+    width: 50%;
+    padding:5px;
+    margin: 20px auto;
+    font-size: 16px;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
