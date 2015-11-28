@@ -167,7 +167,6 @@
         }
 
 
-   /*请补充此处代码，让右侧广告正确显示*/
 
         #content div{
             position: relative;
@@ -215,7 +214,7 @@
         }
 
       
-  /*请补充此处代码，让导航菜单在左侧绝对定位显示*/
+/* menu */
 
         #menu {
             width: 200px;
@@ -278,12 +277,16 @@
                 var items = $("#content").find(".item");
                 var currentH = "";
 
-// 请补充此处代码，让导航菜单实现在滚动条滚动的时候自动设置焦点
+/* 导航菜单实现在滚动条滚动的时候自动设置焦点 */
                 
                 for(var i=0; i<items.length; i++){
                 var item = items[i];
                 var item_top = item.offsetTop;
-                if(item_top-200 < top ){
+                
+                if(items[1].offsetTop-200 > top) {
+                currentH = "#item1";
+                }
+                else if(item_top-200 < top  ){
                 currentH = "#"+item.id;
                 }
                 else{
@@ -305,7 +308,7 @@
                 if($this.class == "current" && $this.attr("href") == currentH){
                     pass;
                 }
-                else if($this.attr("href") == currentH){
+                else if($this.attr("href") == currentH ){  
                     $this.addClass("current");
                     console.log(this.nodeName);
 
@@ -340,7 +343,6 @@
                     formatResult: function (data) {
                         return data[0];
                     }
-                        
                         
                         
                         
