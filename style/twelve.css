@@ -1,0 +1,396 @@
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 12px;
+            line-height: 1.7;
+            background-color: #fff;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #content {
+            margin: 0 auto;
+            padding-bottom: 30px;
+        }
+
+        a {
+            text-decoration: none;
+        
+        }
+        /*  hack button */
+
+        /* Firefox在私有属性里面额外设置了边框和留白，去掉即可.*/
+        .search-form button::-moz-focus-inner {
+            border: 0; 
+            padding: 0; 
+        }        
+            * nav */
+        #nav {
+            position: relative;
+            width:1000px;
+            margin: 0 auto;
+            height: 32px;
+            line-height: 32px;
+        }
+
+        #nav ul {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        #nav ul li {
+            float: left;
+            padding-right: 10px;
+        }
+        
+        #log {
+            display: inline-block;
+            position: relative;
+        }
+        
+        #log em {
+            padding-right:10px;
+        }
+
+        #log a {
+            padding: 10px;
+        }
+    /* search */
+        
+        #search {
+        width: 1000px;
+        margin: 50px auto;
+        }    
+        
+        .search-form {
+        position: relative;/* ie overflow:hidden 不兼容 */ 
+        overflow: hidden;
+        width: 500px;
+        margin: 0 auto;
+        padding: 5px;
+        background: rgba(255, 0, 0, 0.2);
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        }
+    
+        /* input */
+        #search .search-form input {
+        float: left;         /*   必须浮动，否则chorme显示会有几个像素的流失 */
+        width: 400px;
+        padding: 5px;
+        background: #eee;
+        border: none;
+        border-radius: 3px 0 0 3px;
+        -webkit-border-radius: 3px 0 0 3px;
+        -moz-border-radius: 3px 0 0 3px;
+        }
+        
+        #search .search-form input:focus {
+        outline: 0;
+        background: #fff;
+        box-shadow: 0 0 2px rgba(0, 0, 0, .8) inset;
+        } 
+        
+        /* button */
+        /* 小三角（箭头） */
+        #search .search-form button:before {   
+        position: absolute;
+        content:'';
+        border-width: 5px 5px 5px 0px;
+        border-style: solid solid solid none;
+        border-color: transparent #d83c3c transparent;  /*  transparent 上下边透明  */
+        margin-left: -37px;  /* 大概是 button width的一半还少一个字体的宽度（还有三角的边），把它放到指定位置 */
+        margin-top: 7px;
+        
+        * zoom: 1;
+        }
+        
+        #search .search-form button:hover:before {   
+        border-right-color: #e54040;    /* 只改变一边的border的颜色 */
+        }
+        
+        #search .search-form button:active:before,
+        #search .search-form button:focus:before {
+        border-right-color: #c42f2f;
+        outline: 0;
+        }
+
+ 
+        #search .search-form button{
+        float: right;
+        position: relative;
+        background: #d83c3c;
+        border: none;
+        color: #fff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+        font: 13px/26px 'microsoft yahei',Arial,sans-serif;
+        cursor: pointer;
+
+        width: 90px;
+        height: 26px;  /* 有height 不要padding 会影响ff的 文字垂直位置 */
+        padding: 0;
+
+        border-radius: 0 3px 3px 0;
+        -webkit-border-radius: 0 3px 3px 0;
+        -moz-border-radius:  0 3px 3px 0;
+        }
+        
+        #search .search-form button:hover {
+        background: #e54040;
+        }
+        
+        #search .search-form button:active,
+        #search .search-form button:focus {
+        background: #c42f2f;
+        outline: 0;
+        }
+
+         /* head-box */
+        .headBox {
+            height:386px;
+            background-color: rgb(252, 52, 66);
+            background: url("https://img.alicdn.com/tps/TB1d5zgKFXXXXXpXpXXXXXXXXXX-1800-386.jpg") no-repeat  50% 0;
+        }
+        /* timeBox */
+        .timeBox {
+            height: 500px;
+            background-color: rgb(252, 51, 66);
+            background: rgb(252, 51, 66) url("https://img.alicdn.com/tps/TB1ovN_KFXXXXX9XXXXXXXXXXXX-1193-486.png") no-repeat 50% 0;
+        }
+       
+       /* nameBox */
+
+        .nameBox {
+            height: 95px;
+            width: 100%;
+            position: relative;
+        }
+        .nameCenter {
+            display: block;
+            width: 990px;
+            position: relative;
+            margin: 0 auto;
+        }
+        .nameBox a {
+            height: 95px;
+            width: 990px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            text-indent: -999px;
+        }
+               
+        .name1 {
+            height: 80px;
+            background: rgb(251, 238, 9) url("https://img.alicdn.com/tps/TB1ydOPKFXXXXXUXXXXXXXXXXXX-402-67.png")  50% 0px no-repeat ; 
+        }
+        .name2 {
+            height: 95px;
+            background: rgb(32, 186, 245) url(https://img.alicdn.com/tps/TB1LSNsKFXXXXXBXVXXXXXXXXXX-356-109.png) 50% 0px no-repeat no-repeat;
+        }
+        .name3 {
+            height: 120px;
+             background: rgb(175, 211, 15) url(https://img.alicdn.com/tps/TB1jVp4KFXXXXcbXpXXXXXXXXXX-355-98.png) 50% 0px  no-repeat;
+        }
+        .name4 {
+            height: 105px;
+            background:  rgb(255, 71, 111) url(https://img.alicdn.com/tps/TB1PtShKFXXXXXpXXXXXXXXXXXX-326-105.png) no-repeat 50% 0;
+        }
+        .name5 {
+            height: 120px;
+            background: rgb(195, 53, 250) url(https://img.alicdn.com/tps/TB1QZlMKFXXXXc4XXXXXXXXXXXX-469-111.png) 50% 0px no-repeat;
+        }
+ /* content item */
+        #content .item{
+            position: relative;
+        }
+
+ /* item 1*/
+        
+        .oneFirst{
+            height: 293px;
+            background: rgb(251, 238, 9) url(https://img.alicdn.com/tps/TB1wExQKFXXXXXfXVXXXXXXXXXX-1058-293.jpg) 50% 0px no-repeat;
+        }
+
+       .oneSec {
+            height: 313px;
+           background: rgb(251, 238, 9) url(https://img.alicdn.com/tps/TB11b1HKFXXXXcOXXXXXXXXXXXX-1058-309.jpg) 50% 0px no-repeat;
+            padding-bottom: 10px;
+       } 
+/* item2 */
+        .twoFirst {
+            height: 820px; 
+            background: rgb(32, 186, 245) url(https://img.alicdn.com/tps/TB11yjDKFXXXXctXFXXXXXXXXXX-1648-819.png) 50% 0px no-repeat; 
+        
+        }
+/* item3 */
+        #item3 {
+            background-color: rgb(175, 211, 15);
+        }
+        .threeFirst {
+            height: 200px;
+            background:  url(https://img.alicdn.com/tps/TB1Lat1KFXXXXabXFXXXXXXXXXX-990-180.png) 50% 0px no-repeat; 
+        }
+        .threeSec {
+            overflow: hidden;
+            width: 1000px;
+            margin: 0 auto;
+        } 
+        .threeSec a {
+            display: block;
+            width: 323px;
+            height: 165px;
+            margin: 0 10px 10px 0;
+            float: left;
+            overflow: hidden;
+        }
+
+/* item4 */
+        #item4 {
+            background-color: #ff476f;
+            padding-bottom: 20px;
+        
+        }
+        .fourFirst,.fiveFirst {
+            width:1000px;
+            margin: 0 auto;
+        }
+        
+/* item5 */
+        #item5 {
+            background-color: #c335fa;
+            padding-bottom: 200px;
+            margin-bottom: 100px;
+        }
+        
+        .fiveSec {
+            margin-top: 100px;
+            text-align: center;
+        }
+        .fiveSec a {
+            display: inline-block;
+            border-radius: 5px;
+            width: 250px;
+            height: 64px;
+            background-color: #ffe71e;
+        }
+
+        .fiveSec .Btext {
+            font-size: 30px;
+            color: #c335fa;
+        }
+
+/* footer */
+        
+        .footer {
+            display: block;
+            margin: 50px 0 ;
+        }
+        .footer p{
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }      
+/* menu */
+        .menuTop {
+            height:80px;
+            width:140px;
+            background: url(http://img.alicdn.com/tps/TB1cnZ8KpXXXXcHXpXXXXXXXXXX-124-80.png) top left no-repeat;
+        }
+       
+        .menuclose {
+            display: block;
+            width: 48px;
+            height: 24px;
+            line-height: 24px;
+            color: #fff; 
+            text-align: center;
+            margin-left: 73px;
+        }
+        .menuFeng {
+            height: 37px;
+            width: 113px;
+            line-height: 37px;
+            background-color: #f6dd34;  /* vertical-align与line-height都使img垂直 居中 */
+            margin: 0 auto;
+        }
+        .menuFeng img {
+            vertical-align: middle; 
+        
+        }
+       .Fengwrap {
+            background-color: #a202cc;
+        
+        }
+        #menu {
+            width: 120px;
+            position: fixed;
+            top: 200px;
+            left: 50%;
+            margin-left: 500px;
+            color: #000;
+            z-index:1;
+            font:12px/1.5 tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
+            text-align: center;
+        }
+       
+        #menu ul{ 
+            background-color: #a202cc;
+            padding: 2px 3px;
+            }
+        #menu h1, #meul ul li ,#menu ul li a{
+            width: 113px;
+            background: #f6dd34;
+            margin-bottom: 1px;
+        }
+        #menu h1 {
+            width: 126px;
+            color: #f6dd34;
+            font-size: 14px;
+            text-align: center;
+            background-color: #431212;
+            line-height: 30px;
+            font-size: 14px;
+            margin-left: -2px;
+        }
+
+        #menu li {
+            line-height: 23px;
+        }
+        #menu ul li a {
+            display: block;
+            font-size: 12px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        #menu ul li a strong {
+            color: #f1f1f1;
+        }
+
+        #menu ul li a:hover,
+        #menu ul li a.current {
+            color: #fff;
+            background: #666;
+        }
+
+        /*ie6 hack*/
+        * html, * html body {  /* ie6跳变 */
+            background-image: url(about:blank);
+            background-attachment: fixed;
+        }
+
+        * html #menu {
+            /*position: fixed;*/
+            position: absolute;
+            top: expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+100+'px');
+        }
+
+
